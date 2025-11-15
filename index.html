@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Needlemancer - Merch, art, and scene tools built for underground bands">
+    <title>Needlemancer - As metal as cotton gets</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #050505;
+            color: #f5f5f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: #e0e0e0;
+        }
+
+        a {
+            color: #8a1f1f;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        a:hover,
+        a:focus {
+            border-bottom-color: #8a1f1f;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Header */
+        header {
+            padding: 4rem 0 3rem;
+            text-align: center;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .tagline {
+            margin-bottom: 0.5rem;
+        }
+
+        .supporting-line {
+            font-weight: 400;
+            text-transform: none;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: #b0b0b0;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* Bullets and Lists */
+        ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        ul li {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            color: #e0e0e0;
+        }
+
+        ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #8a1f1f;
+            font-weight: bold;
+        }
+
+        /* Ordered Lists */
+        ol {
+            list-style: none;
+            counter-reset: item;
+            margin: 1.5rem 0;
+        }
+
+        ol li {
+            counter-increment: item;
+            padding-left: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            color: #e0e0e0;
+        }
+
+        ol li::before {
+            content: counter(item) ".";
+            position: absolute;
+            left: 0;
+            color: #8a1f1f;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        ol li strong {
+            color: #fff;
+        }
+
+        /* Highlights Section */
+        .highlights {
+            margin-top: 1.5rem;
+        }
+
+        .highlights h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            color: #8a1f1f;
+            font-weight: 700;
+        }
+
+        /* Values Grid */
+        .values-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .values-list li {
+            background: #0a0a0a;
+            padding: 1.5rem;
+            border-left: 3px solid #8a1f1f;
+        }
+
+        .values-list li::before {
+            display: none;
+        }
+
+        /* Contact Form */
+        .notify-form {
+            margin: 2rem 0;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .notify-form input[type="email"] {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.875rem 1rem;
+            background: #0a0a0a;
+            border: 1px solid #2a2a2a;
+            color: #f5f5f5;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+        }
+
+        .notify-form input[type="email"]:focus {
+            outline: none;
+            border-color: #8a1f1f;
+        }
+
+        .notify-form button {
+            padding: 0.875rem 2rem;
+            background: #8a1f1f;
+            color: #fff;
+            border: none;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background-color 0.2s ease;
+        }
+
+        .notify-form button:hover,
+        .notify-form button:focus {
+            background: #a32525;
+            outline: 2px solid #8a1f1f;
+            outline-offset: 2px;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            margin: 2rem 0;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-info a {
+            color: #8a1f1f;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.875rem;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        footer .tagline-footer {
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            header {
+                padding: 3rem 0 2rem;
+            }
+
+            .notify-form {
+                flex-direction: column;
+            }
+
+            .notify-form input[type="email"],
+            .notify-form button {
+                width: 100%;
+            }
+
+            .values-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Focus visible */
+        *:focus-visible {
+            outline: 2px solid #8a1f1f;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="tagline">As metal as cotton gets.</h1>
+            <p class="supporting-line">Merch, art, and scene tools built for underground bands — not for suits.</p>
+        </header>
+
+        <main>
+            <section id="intro">
+                <h3>What is Needlemancer</h3>
+                <p>Needlemancer is a band-first platform for underground metal. We're building a webshop, print-on-demand service, and creator hub that takes the pain out of merch, supports small bands, and amplifies the whole scene. No upfront costs, no inventory risk, no fine print — just real support for real artists.</p>
+            </section>
+
+            <section id="for-bands">
+                <h3>For Bands</h3>
+                <p>Put out merch without the headache. Submit your art, set your price, and your store goes live — we handle printing, shipping, fulfillment, and customer service. No upfront costs. No minimums. No stock piles eating your budget.</p>
+
+                <div class="highlights">
+                    <h4>Highlights</h4>
+                    <ul>
+                        <li>Print-on-demand with band-controlled pricing.</li>
+                        <li>Bulk printing available — no minimum order, individually packed in branded wrapping.</li>
+                        <li>Feature pages with merch, show dates, interviews, and socials.</li>
+                        <li>Physical redemption tokens so you never lose a sale on the road.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="for-fans">
+                <h3>For Fans</h3>
+                <p>Support the bands you love, directly and transparently. Every item is officially approved, printed on demand, and shipped within the EU. No bootlegs, no bargain-bin print houses — just quality merch that keeps the underground alive.</p>
+
+                <ul>
+                    <li>High-quality POD shirts and gear.</li>
+                    <li>Exclusive art drops from scene creators.</li>
+                    <li>Easy discovery across obscure and upcoming bands.</li>
+                </ul>
+            </section>
+
+            <section id="for-artists">
+                <h3>For Artists</h3>
+                <p>Needlemancer gives artists a proper platform too. Get a dedicated profile page, showcase band work, and release your own independent designs. Make it easy for bands to find you, commission you, and credit you properly.</p>
+
+                <ul>
+                    <li>Dedicated profile with portfolio & links.</li>
+                    <li>Sell your own non-band designs.</li>
+                    <li>Direct contact options for commissions.</li>
+                    <li>Cross-linking to all merch you're involved with.</li>
+                </ul>
+            </section>
+
+            <section id="how-it-works">
+                <h3>How It Works</h3>
+                <ol>
+                    <li><strong>Reach Out</strong> — Send your designs and basic info.</li>
+                    <li><strong>Set Up Your Merch</strong> — We prepare products, set your price, and finalize your storefront.</li>
+                    <li><strong>Launch</strong> — Your band page goes live with merch, show dates, and fan-facing info.</li>
+                    <li><strong>Print & Ship</strong> — Fans order. We print on demand and ship across the EU.</li>
+                    <li><strong>Get Paid</strong> — Clear, transparent payouts. No surprises.</li>
+                </ol>
+
+                <p><strong>Bulk Orders:</strong> No minimums, individually packed, and tour-ready.</p>
+            </section>
+
+            <section id="redemption-tokens">
+                <h3>Physical Redemption Tokens</h3>
+                <p>Bands don't always want to carry a suitcase full of shirts.</p>
+
+                <p>Needlemancer offers <strong>laser-engraved collectible tokens</strong> — cards, coins, or other small-format items — each with a unique redemption code.</p>
+
+                <p>You sell the tokens at shows. Fans get a durable, collectible item on the spot, and redeem the code online for the actual shirt. The band avoids overstock, lost sales, and tour logistics hell; fans get both a shirt <em>and</em> a limited physical keepsake.</p>
+            </section>
+
+            <section id="values">
+                <h3>Values & Principles</h3>
+                <ul class="values-list">
+                    <li>Band-First or Nothing.</li>
+                    <li>Transparent Terms, No Hidden Costs.</li>
+                    <li>Artists Deserve Credit.</li>
+                    <li>Fair, Clear Payouts.</li>
+                    <li>Built for the Underground.</li>
+                </ul>
+            </section>
+
+            <section id="coming-soon">
+                <h3>Coming Soon</h3>
+                <p>We're building the full Needlemancer platform: a webshop, merch engine, artist hub, and band pages — all designed for the underground metal community.</p>
+
+                <p>Bands, labels, and artists: if you want to be part of the launch wave, get in touch.</p>
+            </section>
+
+            <section id="contact">
+                <h3>Contact</h3>
+                <div class="contact-info">
+                    <p>Bands & labels: <a href="mailto:bands@needlemancer.com">bands@needlemancer.com</a></p>
+                    <p>General inquiries: <a href="mailto:contact@needlemancer.com">contact@needlemancer.com</a></p>
+                </div>
+
+                <form class="notify-form" onsubmit="return false;">
+                    <label for="email" class="sr-only">Email address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="your@email.com"
+                        aria-label="Email address for launch notifications"
+                    >
+                    <button type="submit">Notify Me When We Launch</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Needlemancer. All rights reserved.</p>
+            <p class="tagline-footer">Built for underground metal bands and the communities around them.</p>
+        </footer>
+    </div>
+</body>
+</html>
