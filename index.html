@@ -49,8 +49,37 @@
 
         h3 {
             font-size: clamp(1.25rem, 3vw, 1.75rem);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             color: #fff;
+            background: #8a1f1f;
+            padding: 1rem 1.5rem;
+            display: inline-block;
+            position: relative;
+        }
+
+        /* Odd sections - title extends left */
+        section:nth-child(odd) h3 {
+            left: -1.5rem;
+            right: auto;
+        }
+
+        /* Even sections - title extends right */
+        section:nth-child(even) h3 {
+            right: -1.5rem;
+            left: auto;
+            float: right;
+        }
+
+        /* Clear content after floated h3 in even sections */
+        section:nth-child(even) h3 + * {
+            clear: both;
+        }
+
+        section:nth-child(even) h3 + p,
+        section:nth-child(even) h3 + ul,
+        section:nth-child(even) h3 + ol,
+        section:nth-child(even) h3 + div {
+            clear: both;
         }
 
         p {
@@ -81,7 +110,16 @@
         header {
             padding: 4rem 0 3rem;
             text-align: center;
-            border-bottom: 1px solid #1a1a1a;
+            border-bottom: none;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 2rem;
+            display: block;
         }
 
         .tagline {
@@ -97,12 +135,34 @@
 
         /* Sections */
         section {
-            padding: 4rem 0;
-            border-bottom: 1px solid #1a1a1a;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            background: #0a0a0a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Odd sections - left border */
+        section:nth-child(odd) {
+            border-left: 4px solid #8a1f1f;
+            border-right: none;
+        }
+
+        /* Even sections - right border */
+        section:nth-child(even) {
+            border-right: 4px solid #8a1f1f;
+            border-left: none;
         }
 
         section:last-of-type {
-            border-bottom: none;
+            margin-bottom: 3rem;
+        }
+
+        /* Clear floats in sections */
+        section::after {
+            content: "";
+            display: table;
+            clear: both;
         }
 
         /* Bullets and Lists */
@@ -159,13 +219,32 @@
             margin-top: 1.5rem;
         }
 
+        .highlights::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
         .highlights h4 {
             font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-            color: #8a1f1f;
+            margin-bottom: 1.5rem;
+            color: #fff;
             font-weight: 700;
+            background: #8a1f1f;
+            padding: 0.5rem 1rem;
+            display: inline-block;
+        }
+
+        /* Align highlights h4 with section orientation */
+        section:nth-child(even) .highlights h4 {
+            float: right;
+        }
+
+        /* Clear content after floated h4 in highlights */
+        section:nth-child(even) .highlights h4 + * {
+            clear: both;
         }
 
         /* Values Grid */
@@ -177,9 +256,15 @@
         }
 
         .values-list li {
-            background: #0a0a0a;
+            background: #050505;
             padding: 1.5rem;
             border-left: 3px solid #8a1f1f;
+            transition: transform 0.2s ease, border-left-width 0.2s ease;
+        }
+
+        .values-list li:hover {
+            transform: translateX(4px);
+            border-left-width: 6px;
         }
 
         .values-list li::before {
@@ -272,11 +357,28 @@
             }
 
             section {
-                padding: 3rem 0;
+                padding: 2rem 1.5rem;
             }
 
             header {
                 padding: 3rem 0 2rem;
+            }
+
+            h3 {
+                padding: 0.75rem 1rem;
+                font-size: 1.25rem;
+            }
+
+            section:nth-child(odd) h3 {
+                left: -1rem;
+            }
+
+            section:nth-child(even) h3 {
+                right: -1rem;
+            }
+
+            .logo {
+                max-width: 250px;
             }
 
             .notify-form {
@@ -316,6 +418,7 @@
 <body>
     <div class="container">
         <header>
+            <img src="assets/needlemancer_logo_text.png" alt="Needlemancer" class="logo">
             <h1 class="tagline">As metal as cotton gets.</h1>
             <p class="supporting-line">Merch, art, and scene tools built for underground bands — not for suits.</p>
         </header>
